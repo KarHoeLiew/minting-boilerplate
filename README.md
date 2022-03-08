@@ -1,7 +1,8 @@
 # minting-boilerplate
-
 ## Project setup
 ```
+git fork
+
 npm install
 ```
 
