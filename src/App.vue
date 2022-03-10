@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view />
+    <router-view /> -->
+<wizzard-form/>
   </div>
 </template>
+
+<script>
+import WizzardForm from './components/WizzardForm.vue';
+export default {
+  components: { WizzardForm },
+  name: "App"
+};
+</script>
 
 <style lang="scss">
 #app {
