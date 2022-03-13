@@ -5,14 +5,16 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view /> -->
-<wizzard-form/>
+<!-- <wizzard-form/> -->
+<!-- <wizzard-form-2/> -->
+<wizzard-form-3/>
   </div>
 </template>
 
 <script>
-import WizzardForm from './components/WizzardForm.vue';
+import WizzardForm3 from './components/WizzardForm3.vue';
 export default {
-  components: { WizzardForm },
+  components: { WizzardForm3 },
   name: "App"
 };
 </script>

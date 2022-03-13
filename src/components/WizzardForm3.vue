@@ -3,26 +3,28 @@
     <div>
     <b-button v-b-modal.modal-center>Launch centered modal</b-button>
 
-    <b-modal id="modal-center" centered title="Deploy Individual Artist / Project on Ethereum Test Network">
+    <b-modal id="modal-center" centered title="Deploy Individual Artist / Project on Ethereum Test Network" hide-footer>
+      <b-form @submit="onSubmit">
         <div class="my-4" @change="currentPage" v-if="showPageStatus(0)">
-          <label>Project/Collectable Name</label>
-          <b-form-input type="text" name="projectName"></b-form-input>
-          <br>
-          <label>Project/Collectable Description</label>
-          <b-form-input type="text" name="projectDesc"></b-form-input>
-          <br>
-          <label>Beneficiary Wallet Address</label>
-          <b-form-input type="text" name="walletAddress"></b-form-input>
-          <br>
-          <div>
-            <label for="range-1">Royalty Percentage For Secondary Sales</label>
-            <b-form-input id="range-1" v-model="royaltyPercentage" type="range" min="0" max="100"></b-form-input>
-            <div class="mt-2">Value: {{ royaltyPercentage }}</div>
-          </div>
+  
+              <label>Project/Collectable Name</label>
+              <b-form-input type="text" name="projectName" v-model="form.projectName" required></b-form-input>
+              <br>
+              <label>Project/Collectable Description</label>
+              <b-form-input type="text" name="projectDesc" v-model="form.projectDesc" required></b-form-input>
+              <br>
+              <label>Beneficiary Wallet Address</label>
+              <b-form-input type="text" name="walletAddress" v-model="form.walletAddress" required></b-form-input>
+              <br>
+              <div>
+                <label for="range-1">Royalty Percentage For Secondary Sales</label>
+                <b-form-input id="range-1" v-model="form.royaltyPercentage" type="range" min="0" max="100"></b-form-input>
+                <div class="mt-2">Value: {{ form.royaltyPercentage }}</div>
+              </div>
         </div>
 
         <div class="my-4" @change="currentPage" v-else-if="showPageStatus(1)">
-          <div>
+              <div>
               <div
                 class="imagePreviewWrapper"
                 :style="{ 'background-image': `url(${previewImage})` }"
@@ -32,6 +34,7 @@
               <input
                 ref="fileInput"
                 type="file"
+              
                 @input="pickFile">
             </div>
         </div>
@@ -42,13 +45,15 @@
           <p>2. Please note that all features provided on this site is currently experimental and may contain bugs. Proceed at your own risk</p><br>
           <p>3. If deploying to the main network on a blockchain, you will have to spend real cryptocurrencies. Only proceed if you’re absolutely certain</p><br>
           <p>4. Testnet transactions are usually done with fake / dummy / free testnet tokens which you can get on the testnet faucet</p><br>
-          <p>I HAVE READ AND AGREE TO THE TERMS AND CONDITIONS</p>
+          <p><b-form-checkbox v-model="form.checkedConsent">I HAVE READ AND AGREE TO THE TERMS AND CONDITIONS</b-form-checkbox></p>
         </div>
-        
-        <template #modal-footer>
-        <b-button @click="prevPage" class="danger">Previous</b-button>
-         <b-button @click="nextPage" class="primary">Next</b-button>
-        </template>
+
+         <b-button @click="prevPage" class="danger">Previous</b-button>
+          <b-button  @click="nextPage" class="primary">Next</b-button>
+          <b-button  type="submit" variant="primary">Done</b-button>
+
+        </b-form>
+
     </b-modal>
     
     </div>
@@ -61,11 +66,19 @@ export default {
   props: {},
   data(){
       return {
-      previewImage: null,
-      royaltyPercentage: 0,
+      form: {
+          projectName: "",
+          projectDesc: "",
+          walletAddress: "",
+          imageFile: {},
+          royaltyPercentage: 0,
+          checkedConsent: false 
+      },
+      previewImage: 'https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg',
       currentPage: 0,
       maxPage: 2,
-      pages: [true, false, false]
+      pages: [true, false, false],
+      showDoneBtn: true
       }
   },
   methods: {
@@ -74,7 +87,9 @@ export default {
         this.currentPage++;
         this.pages[this.currentPage] = true;
         this.pages[this.currentPage -1] = false;
+
         }
+        
     },
     prevPage() {
         if(this.currentPage -1 >= 0) {
@@ -96,10 +111,13 @@ export default {
           let reader = new FileReader
           reader.onload = e => {
             this.previewImage = e.target.result
+            this.form.imageFile = e.target.result
           }
           reader.readAsDataURL(file[0])
-          this.$emit('input', file[0])
         }
+      },
+      onSubmit(){
+        alert(JSON.stringify(this.form))
       }
   },
   computed:{}
