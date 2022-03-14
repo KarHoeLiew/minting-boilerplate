@@ -1,23 +1,15 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="nav">
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> -->
+      
+      <router-link to="/nft-list">NFT List</router-link> |
+      <router-link to="/mint-form">Mint Form</router-link>
     </div>
-    <router-view /> -->
-<!-- <wizzard-form/> -->
-<!-- <wizzard-form-2/> -->
-<wizzard-form-3/>
+    <router-view />
   </div>
 </template>
-
-<script>
-import WizzardForm3 from './components/WizzardForm3.vue';
-export default {
-  components: { WizzardForm3 },
-  name: "App"
-};
-</script>
 
 <style lang="scss">
 #app {
