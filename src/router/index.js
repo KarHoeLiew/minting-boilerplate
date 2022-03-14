@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import NFTList from "../views/NFTList.vue"
+import MintForm from "../views/MintForm.vue"
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/nft-list",
     name: "NFTList",
     component: NFTList,
+  },
+  {
+    path: "/mint-form",
+    name: "MintForm",
+    component: MintForm,
   },
 ];
 
