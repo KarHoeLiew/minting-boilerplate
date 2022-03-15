@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
-      
+      <!-- <router-link to="/">Home</router-link> | -->
+      <router-link to="/about">About</router-link> |
       <router-link to="/nft-list">NFT List</router-link> |
       <router-link to="/mint-form">Mint Form</router-link>
     </div>
     <router-view />
   </div>
+
 </template>
 
 <style lang="scss">

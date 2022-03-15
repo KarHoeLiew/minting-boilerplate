@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import NFTList from "../views/NFTList.vue"
 import MintForm from "../views/MintForm.vue"
+import About from "../views/About.vue"
 
 Vue.use(VueRouter);
 
@@ -15,11 +16,7 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: About
   },
   {
     path: "/nft-list",
@@ -30,7 +27,7 @@ const routes = [
     path: "/mint-form",
     name: "MintForm",
     component: MintForm,
-  },
+  }
 ];
 
 const router = new VueRouter({

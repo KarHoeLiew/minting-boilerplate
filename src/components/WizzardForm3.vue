@@ -1,12 +1,11 @@
 <template>
-  <div class="wizzardForm">
+  <div class="WizzardForm3">
     <div>
     <b-button v-b-modal.modal-center>Launch centered modal</b-button>
 
     <b-modal id="modal-center" centered title="Deploy Individual Artist / Project on Ethereum Test Network" hide-footer>
-      <b-form @submit="onSubmit">
-        <div class="my-4" @change="currentPage" v-if="showPageStatus(0)">
-  
+      <b-form @change="currentPage" v-if="showPageStatus(0)">
+        <div class="my-4">
               <label>Project/Collectable Name</label>
               <b-form-input type="text" name="projectName" v-model="form.projectName" required></b-form-input>
               <br>
@@ -22,8 +21,9 @@
                 <div class="mt-2">Value: {{ form.royaltyPercentage }}</div>
               </div>
         </div>
-
-        <div class="my-4" @change="currentPage" v-else-if="showPageStatus(1)">
+      </b-form>
+     <b-form @change="currentPage" v-if="showPageStatus(1)">
+        <div class="my-4">
               <div>
               <div
                 class="imagePreviewWrapper"
@@ -38,8 +38,9 @@
                 @input="pickFile">
             </div>
         </div>
-
-        <div class="my-4" @change="currentPage" v-else-if="showPageStatus(2)">
+      </b-form>
+     <b-form @change="currentPage" v-if="showPageStatus(2)">
+        <div class="my-4">
           <h6>IMPORTANT</h6>
           <p>1. Please make sure everything you entered is correct as you will not be able to change these later</p><br>
           <p>2. Please note that all features provided on this site is currently experimental and may contain bugs. Proceed at your own risk</p><br>
@@ -47,13 +48,9 @@
           <p>4. Testnet transactions are usually done with fake / dummy / free testnet tokens which you can get on the testnet faucet</p><br>
           <p><b-form-checkbox v-model="form.checkedConsent">I HAVE READ AND AGREE TO THE TERMS AND CONDITIONS</b-form-checkbox></p>
         </div>
-
+      </b-form>
          <b-button @click="prevPage" class="danger">Previous</b-button>
           <b-button  @click="nextPage" class="primary">Next</b-button>
-          <b-button  type="submit" variant="primary">Done</b-button>
-
-        </b-form>
-
     </b-modal>
     
     </div>
@@ -62,7 +59,7 @@
 
 <script>
 export default {
-  name: "WizzardForm",
+  name: "WizzardForm3",
   props: {},
   data(){
       return {
